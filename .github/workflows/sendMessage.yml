@@ -17,5 +17,5 @@ jobs:
           WECHAT_WORK_BOT_WEBHOOK: ${{secrets.WECHAT_WORK_BOT_WEBHOOK}}
         with:
           msgtype: text
-          content: hello
+          content: hello word
           mentioned_list: '["@all"]'
