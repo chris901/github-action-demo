@@ -4,13 +4,18 @@ on:
     branches:
       - master
 jobs:
-  build-and-deploy:
-    runs-on: ubuntu-latest
+  send-msg:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
     steps:
-    - name: WeChat Work notification by text
-    uses: chf007/action-wechat-work@master
-    env:
-      WECHAT_WORK_BOT_WEBHOOK: ${{secrets.WECHAT_WORK_BOT_WEBHOOK}}
-    with:
-      msgtype: text
-      content: hello
+      # 纯文本类型
+      - name: WeChat Work notification by text
+        uses: chf007/action-wechat-work@master
+        env:
+          WECHAT_WORK_BOT_WEBHOOK: ${{secrets.WECHAT_WORK_BOT_WEBHOOK}}
+        with:
+          msgtype: text
+          content: hello
+          mentioned_list: '["@all"]'
